@@ -17,10 +17,12 @@ weights = [
 ]
 biases = [2.0, 3.0, 0.5]
 
-outputs = []
-for i in range(len(weights)):
-    res = sum(inputs[j] * weights[i][j] for j in range(len(inputs))) + biases[i]
-    
-    outputs.append(res)
+layer_outputs = []
+for neuron_weights, neuron_bias in zip(weights, biases):
+    neuron_output = 0
+    for neuron_input, weight in zip(inputs, neuron_weights):
+        neuron_output += neuron_input * weight
+    neuron_output +=  neuron_bias
+    layer_outputs.append(neuron_output)
 
-print(outputs)
+print(layer_outputs)
